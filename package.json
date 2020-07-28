@@ -1,7 +1,8 @@
 {
   "name": "frontend-project-lvl2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Compares two configuration files and shows a difference.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +10,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nightlord189/frontend-project-lvl2.git"
+  },
+  "bin": {
+    "gendiff": "bin/gendiff.js"
   },
   "author": "night.lord@nlgmail.com",
   "license": "ISC",
