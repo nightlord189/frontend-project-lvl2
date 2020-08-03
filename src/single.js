@@ -9,37 +9,29 @@ import _ from 'lodash';
 }
 */
 
-const resultToString = (data) => {
-    let result = '{\n';
-    for (let val of data) {
-        switch (val.status) {
-            case 'same':
-                result += `    ${val.key}: ${val.oldValue}\n`;
-                break;
-            case 'remove':
-                result += `  - ${val.key}: ${val.oldValue}\n`;
-                break;
-            case 'add':
-                result += `  + ${val.key}: ${val.newValue}\n`;
-                break;    
-            case 'change':
-                result += `  - ${val.key}: ${val.oldValue}\n`;
-                result += `  + ${val.key}: ${val.newValue}\n`;
-                break;             
-        }
+const itemToString = (item) => {
+    switch (item.status) {
+        case 'same':
+            return `    ${item.key}: ${item.oldValue}\n`;
+        case 'remove':
+            return `  - ${item.key}: ${item.oldValue}\n`;
+        case 'add':
+            return `  + ${item.key}: ${item.newValue}\n`;
+        case 'change':
+            return `  - ${item.key}: ${item.oldValue}\n  + ${item.key}: ${item.newValue}\n`;        
     }
-    result += '}';
+    return '';
+}
+
+const resultToString = (data) => {
+    const dataArrStr = data.map(itemToString);
+    const dataStr = dataArrStr.join('');
+    const result = `{\n${dataStr}}`;
     return result;
 }
 
 const compare = (data1, data2) => {
-    const result = {};
-    for (let key of Object.keys(data1)) {
-        result[key] = {key};
-    }
-    for (let key of Object.keys(data2)) {
-        result[key] = {key};
-    }
+    const result = {...data1, ...data2};
     for (let key of Object.keys(result)) {
         if (_.has(data1, key)) {
             result[key].oldValue = data1[key];
