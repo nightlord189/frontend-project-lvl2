@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import commanderPkg from 'commander';
-import { compareSingle } from '../src/single.js';
+import compareSingle from '../src/single.js';
 
 const { Command } = commanderPkg;
 
