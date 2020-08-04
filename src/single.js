@@ -13,20 +13,20 @@ import _ from 'lodash';
 const itemToString = (item) => {
     switch (item.status) {
         case 'same':
-            return `    ${item.key}: ${item.oldValue}\n`;
+            return `    ${item.key}: ${item.oldValue}`;
         case 'remove':
-            return `  - ${item.key}: ${item.oldValue}\n`;
+            return `  - ${item.key}: ${item.oldValue}`;
         case 'add':
-            return `  + ${item.key}: ${item.newValue}\n`;
+            return `  + ${item.key}: ${item.newValue}`;
         case 'change':
-            return `  - ${item.key}: ${item.oldValue}\n  + ${item.key}: ${item.newValue}\n`;        
+            return `  - ${item.key}: ${item.oldValue}\n  + ${item.key}: ${item.newValue}`;        
     }
     return '';
 }
 
 const resultToString = (data) => {
     const dataArrStr = data.map(itemToString);
-    const dataStr = dataArrStr.join('');
+    const dataStr = dataArrStr.join('\n');
     const result = `{\n${dataStr}}`;
     return result;
 }
