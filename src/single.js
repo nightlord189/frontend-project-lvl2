@@ -27,7 +27,7 @@ const itemToString = (item) => {
 const resultToString = (data) => {
     const dataArrStr = data.map(itemToString);
     const dataStr = dataArrStr.join('\n');
-    const result = `{\n${dataStr}}`;
+    const result = `{\n${dataStr}\n}`;
     return result;
 }
 
