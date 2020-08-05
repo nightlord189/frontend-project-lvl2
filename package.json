@@ -20,6 +20,10 @@
     "url": "https://github.com/nightlord189/frontend-project-lvl2/issues"
   },
   "homepage": "https://github.com/nightlord189/frontend-project-lvl2#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
   "dependencies": {
     "commander": "^6.0.0",
     "lodash": "^4.17.19"
@@ -27,6 +31,7 @@
   "devDependencies": {
     "eslint": "^7.3.1",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.21.2"
+    "eslint-plugin-import": "^2.21.2",
+    "jest": "^26.2.2"
   }
 }
