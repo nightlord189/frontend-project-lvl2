@@ -9,3 +9,6 @@ lint:
 
 link:
 	npm link --force
+
+test:
+	npm test

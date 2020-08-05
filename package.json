@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/gendiff.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx -n --experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "commander": "^6.0.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "@jest/globals": "^26.1.0"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
