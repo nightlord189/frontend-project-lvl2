@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/gendiff.js",
   "scripts": {
-    "test": "npx -n --experimental-vm-modules jest"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
