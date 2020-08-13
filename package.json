@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/gendiff.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx -n --experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
@@ -25,14 +25,16 @@
     "transform": {}
   },
   "dependencies": {
+    "@jest/globals": "^26.1.0",
     "commander": "^6.0.0",
-    "lodash": "^4.17.19",
-    "@jest/globals": "^26.1.0"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
+    "eslint-plugin-jest": "^23.20.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
-    "jest": "^26.2.2"
+    "jest": "^26.2.2",
+    "jest-cli": "^26.1.0"
   }
 }

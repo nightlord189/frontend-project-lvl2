@@ -19,7 +19,7 @@ const itemToString = (item) => {
     case 'add':
       return `  + ${item.key}: ${item.newValue}`;
     case 'change':
-      return `  - ${item.key}: ${item.oldValue}\n  + ${item.key}: ${item.newValue}`;
+      return `  - ${item.key}: ${item.oldValue}\r\n  + ${item.key}: ${item.newValue}`;
     default:
       return '';
   }
@@ -27,8 +27,8 @@ const itemToString = (item) => {
 
 const resultToString = (data) => {
   const dataArrStr = data.map(itemToString);
-  const dataStr = dataArrStr.join('\n');
-  const result = `{\n${dataStr}\n}`;
+  const dataStr = dataArrStr.join('\r\n');
+  const result = `{\r\n${dataStr}\r\n}`;
   return result;
 };
 
