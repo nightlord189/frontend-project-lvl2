@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import commanderPkg from 'commander';
-import compareSingle from '../src/single.js';
+import genDiff from '../src/gendiff.js';
 
 const { Command } = commanderPkg;
 
@@ -14,7 +14,7 @@ program
 program.version('1.0.0')
   .arguments('<file1> <file2>')
   .action((file1, file2) => {
-    const result = compareSingle(file1, file2);
+    const result = genDiff(file1, file2);
     console.log(result);
   });
 

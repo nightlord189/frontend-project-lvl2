@@ -1,5 +1,6 @@
 import fs from 'fs';
 import _ from 'lodash';
+import parse from './parsers.js'
 
 /*
 {
@@ -77,14 +78,14 @@ const compare = (data1, data2) => {
   return sorted;
 };
 
-const compareSingle = (file1, file2) => {
+const compareFlat = (file1, file2) => {
   const file1Data = fs.readFileSync(file1, { encoding: 'utf8', flag: 'r' });
   const file2Data = fs.readFileSync(file2, { encoding: 'utf8', flag: 'r' });
-  const data1 = JSON.parse(file1Data);
-  const data2 = JSON.parse(file2Data);
+  const data1 = parse(file1Data, file1.split('.')[1]);
+  const data2 = parse(file2Data, file2.split('.')[1]);
   const result = compare(data1, data2);
   const resultStr = resultToString(result);
   return resultStr;
 };
 
-export default compareSingle;
+export default compareFlat;
