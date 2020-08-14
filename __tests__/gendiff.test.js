@@ -2,7 +2,7 @@ import { test, expect } from '@jest/globals';
 import fs from 'fs';
 import compareFlat from '../src/flat.js';
 
-const fixturePath = '__tests__/__fixtures__'
+const fixturePath = '__tests__/__fixtures__';
 
 test('flat_json', () => {
   let compare = compareFlat(`${fixturePath}/file1.json`, `${fixturePath}/file2.json`);
