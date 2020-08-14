@@ -1,5 +1,5 @@
-import compareSingle from './single.js';
+import compareFlat from './flat.js';
 
-const genDiff = (file1, file2) => compareSingle(file1, file2);
+const genDiff = (file1, file2) => compareFlat(file1, file2);
 
 export default genDiff;
