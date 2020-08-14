@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: make lint
+name: main
 
 on:
   push:
@@ -27,3 +27,13 @@ jobs:
     - run: make install
     - run: make lint
     - run: make test
+    - name: Test & publish code coverage
+    # Publish code coverage on Code Climate
+    # https://github.com/paambaati/codeclimate-action
+    uses: paambaati/codeclimate-action@v2.6.0
+    # Add Code Climate secret key
+    env:
+      CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_COVERAGE }}
+    with:
+      coverageCommand: make test-coverage
+      debug: true
