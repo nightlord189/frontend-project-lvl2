@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "nested json",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "program": "${workspaceFolder}\\bin\\gendiff.js",
+            "args": ["file3.json", "file4.json"]
+        },
+        {
             "name": "flat json",
             "request": "launch",
             "skipFiles": [
