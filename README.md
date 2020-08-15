@@ -8,3 +8,6 @@
 
 ## YAML flat comparison:
 [![asciicast](https://asciinema.org/a/bUbbgef78aUuX170CERMyuRmx.svg)](https://asciinema.org/a/bUbbgef78aUuX170CERMyuRmx)
+
+## ini flat comparison:
+[![asciicast](https://asciinema.org/a/oeA4DWD1R6LHFLGmIi76uWlTc.svg)](https://asciinema.org/a/oeA4DWD1R6LHFLGmIi76uWlTc)
