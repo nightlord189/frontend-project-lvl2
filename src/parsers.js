@@ -1,5 +1,5 @@
 import yaml from 'js-yaml';
-import ini from 'ini'
+import ini from 'ini';
 
 const parse = (rawData, extension) => {
   switch (extension) {
@@ -11,7 +11,7 @@ const parse = (rawData, extension) => {
     case 'ini':
       return ini.parse(rawData);
     default:
-      throw new Error('unknown extension '+extension);
+      throw new Error(`unknown extension ${extension}`);
   }
 };
 
