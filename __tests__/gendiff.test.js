@@ -28,3 +28,9 @@ test('flat_ini', () => {
   const result = fs.readFileSync(`${fixturePath}/result1.txt`, { encoding: 'utf8', flag: 'r' });
   expect(compare).toEqual(result);
 });
+
+test('nested_json', () => {
+  const compare = compareFlat(`${fixturePath}/file3.json`, `${fixturePath}/file4.json`);
+  const result = fs.readFileSync(`${fixturePath}/result3.txt`, { encoding: 'utf8', flag: 'r' });
+  expect(compare).toEqual(result);
+});

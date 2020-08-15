@@ -1,6 +1,7 @@
 import fs from 'fs';
 import _ from 'lodash';
 import parse from './parsers.js';
+import {formatDefault} from './formatters.js'
 
 /*
 {
@@ -10,28 +11,6 @@ import parse from './parsers.js';
     newValue
 }
 */
-
-const itemToString = (item) => {
-  switch (item.status) {
-    case 'same':
-      return `    ${item.key}: ${item.oldValue}`;
-    case 'remove':
-      return `  - ${item.key}: ${item.oldValue}`;
-    case 'add':
-      return `  + ${item.key}: ${item.newValue}`;
-    case 'change':
-      return `  - ${item.key}: ${item.oldValue}\r\n  + ${item.key}: ${item.newValue}`;
-    default:
-      return '';
-  }
-};
-
-const resultToString = (data) => {
-  const dataArrStr = data.map(itemToString);
-  const dataStr = dataArrStr.join('\r\n');
-  const result = `{\r\n${dataStr}\r\n}`;
-  return result;
-};
 
 const getAllKeys = (data1, data2) => {
   const merged = { ...data1, ...data2 };
@@ -84,7 +63,7 @@ const compareFlat = (file1, file2) => {
   const data1 = parse(file1Data, file1.split('.')[1]);
   const data2 = parse(file2Data, file2.split('.')[1]);
   const result = compare(data1, data2);
-  const resultStr = resultToString(result);
+  const resultStr = formatDefault(result);
   return resultStr;
 };
 
