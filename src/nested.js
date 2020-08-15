@@ -9,86 +9,54 @@ import {formatDefault} from './formatters_nested.js'
     status - add, remove, same, change
     oldValue
     newValue (if add or change)
-    children (if exists)
     depth
 }
 */
 
 const getAllKeys = (data1, data2) => {
-    const merged = { ...data1, ...data2 };
+    const merged = { ...(_.isObject(data1) ? data1 : {}), ...(_.isObject(data2) ? data2 : {}) };
     const result = Object.keys(merged);
     return result;
   };
   
-const compareMapKey = (item, data1, data2) => {
-    if (_.has(data1, item.key)) {
-      if (_.has(data2, item.key)) {
-        if (_.isEqual(data1[item.key], data2[item.key])) {
-          if (typeof(data1[item.key]) === 'object' && typeof(data2[item.key]) === 'object') {
-                return {
-                    key: item.key,
-                    status: 'same',
-                    children: compare(data1[item.key], data2[item.key], item.depth),
-                    depth: item.depth
-                }
-          }
-          return {
-            key: item.key,
-            status: 'same',
-            oldValue: data1[item.key],
-            depth: item.depth
-          };
-        }
-        if (typeof(data1[item.key]) === 'object' && typeof(data2[item.key]) === 'object') {
-            return {
-                key: item.key,
-                status: 'change',
-                children: compare(data1[item.key], data2[item.key], item.depth),
-                depth: item.depth
-            }
-        }
-        return {
-          key: item.key,
-          status: 'change',
-          oldValue: data1[item.key],
-          newValue: data2[item.key],
-          depth: item.depth
-        };
-      }
-      if (typeof(data1[item.key]) === 'object') {
+  const compareMapKey = (item, data1, data2) => {
+    console.log('\n');
+    if (!_.has(data2, item.key)) {
         return {
             key: item.key,
             status: 'remove',
-            children: compare(data1[item.key], data1[item.key], item.depth),
+            oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data1[item.key], item.depth) : data1[item.key],
             depth: item.depth
-        }
-      }  
-      return {
-        key: item.key,
-        status: 'remove',
-        oldValue: data1[item.key],
-        depth: item.depth
-      };
+        }        
     }
-    if (typeof(data2[item.key]) === 'object') {
+    if (!_.has(data1, item.key)) {
         return {
             key: item.key,
             status: 'add',
-            children: compare(data2[item.key], data2[item.key], item.depth),
+            newValue: _.isObject(data2[item.key]) ? compare(data2[item.key], data2[item.key], item.depth) : data2[item.key],
             depth: item.depth
-        }
-    }   
+        }   
+    }
+    if (_.isEqual(data1[item.key], data2[item.key])) {
+        return {
+            key: item.key,
+            status: 'same',
+            oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data2[item.key], item.depth) : null,
+            depth: item.depth
+        }       
+    }
     return {
-      key: item.key,
-      status: 'add',
-      newValue: data2[item.key],
-      depth: item.depth
-    };
+        key: item.key,
+        status: 'change',
+        oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data1[item.key], item.depth)[0] : data1[item.key],
+        newValue: _.isObject(data2[item.key]) ? compare(data2[item.key], data2[item.key], item.depth)[0] : data2[item.key],
+        depth: item.depth
+    }
 };
 
 const compare = (data1, data2, depth=0) => {
     const keys = getAllKeys(data1, data2);
-    const objectWithKeyArr = keys.map((key) => ({key, depth: depth+1}));
+    const objectWithKeyArr = keys.map((key) => ({key, depth: depth + 1 }));
     const resultObj = objectWithKeyArr.map((item) => compareMapKey(item, data1, data2));
     const resultArr = Object.values(resultObj);
     return resultArr;
