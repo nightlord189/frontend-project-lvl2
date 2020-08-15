@@ -23,6 +23,16 @@
             ],
             "program": "${workspaceFolder}\\bin\\gendiff.js",
             "args": ["file1.yml", "file2.yml"]
+        },
+        {
+            "name": "flat ini",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "program": "${workspaceFolder}\\bin\\gendiff.js",
+            "args": ["file1.ini", "file2.ini"]
         }
     ]
 }

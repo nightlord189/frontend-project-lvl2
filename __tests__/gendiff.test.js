@@ -22,3 +22,9 @@ test('flat_yaml', () => {
   const result = fs.readFileSync(`${fixturePath}/result1.txt`, { encoding: 'utf8', flag: 'r' });
   expect(compare).toEqual(result);
 });
+
+test('flat_ini', () => {
+  const compare = compareFlat(`${fixturePath}/file1.ini`, `${fixturePath}/file2.ini`);
+  const result = fs.readFileSync(`${fixturePath}/result1.txt`, { encoding: 'utf8', flag: 'r' });
+  expect(compare).toEqual(result);
+});
