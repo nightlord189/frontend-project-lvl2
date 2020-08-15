@@ -50,7 +50,7 @@ const compareMapKey = (item, data1, data2) => {
 
 const compare = (data1, data2) => {
   const keys = getAllKeys(data1, data2);
-  const objectWithKeyArr = keys.map((key) => ({ key }));
+  const objectWithKeyArr = keys.map((key) => ({key}));
   const resultObj = objectWithKeyArr.map((item) => compareMapKey(item, data1, data2));
   const resultArr = Object.values(resultObj);
   const sorted = resultArr.sort((a, b) => (a.key > b.key ? 1 : -1));
