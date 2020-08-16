@@ -41,7 +41,7 @@ const getAllKeys = (data1, data2) => {
         return {
             key: item.key,
             status: 'same',
-            oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data2[item.key], item.depth) : null,
+            oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data2[item.key], item.depth) : data1[item.key],
             depth: item.depth
         }       
     }
