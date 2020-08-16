@@ -1,30 +1,30 @@
+import _ from 'lodash';
 
 const stringPrefix='  ';
 
+const valueToString = (value, depth) => {
+  if (value==null) {
+    throw new Error('dd');
+  }
+  if (!_.isObject(value)) {
+    return value.toString();
+  }
+  return formatDefault (value, depth);
+}
+
 const nodeToString = (node) => {
-    if (node.children !== undefined) {
-        switch (node.status) {
-            case 'same':
-              return `${stringPrefix.repeat(node.depth*2)}${node.key}: ${formatDefault (node.children, node.depth)}`;    
-            case 'change':
-              return `${stringPrefix.repeat(node.depth*2)}${node.key}: ${formatDefault (node.children, node.depth)}`;
-            case 'add':
-              return `${stringPrefix.repeat(node.depth*2-1)}+ ${node.key}: ${formatDefault (node.children, node.depth)}`;    
-            case 'remove':
-              return `${stringPrefix.repeat(node.depth*2-1)}- ${node.key}: ${formatDefault (node.children, node.depth)}`;              
-            default:
-              return '';
-        }
-    }
     switch (node.status) {
       case 'same':
-        return `${stringPrefix.repeat(node.depth*2)}${node.key}: ${node.oldValue}`;
+        return `${stringPrefix.repeat(node.depth*2)}${node.key}: ${valueToString(node.oldValue, node.depth)}`;
       case 'remove':
-        return `${stringPrefix.repeat(node.depth*2-1)}- ${node.key}: ${node.oldValue}`;
+        return `${stringPrefix.repeat(node.depth*2-1)}- ${node.key}: ${valueToString(node.oldValue, node.depth)}`;
       case 'add':
-        return `${stringPrefix.repeat(node.depth*2-1)}+ ${node.key}: ${node.newValue}`;
+        return `${stringPrefix.repeat(node.depth*2-1)}+ ${node.key}: ${valueToString(node.newValue, node.depth)}`;
       case 'change':
-        return `${stringPrefix.repeat(node.depth*2-1)}- ${node.key}: ${node.oldValue}\r\n${stringPrefix.repeat(node.depth*2-1)}+ ${node.key}: ${node.newValue}`;
+        if (node.oldValue==null || node.oldValue==undefined) {
+          return `${stringPrefix.repeat(node.depth*2)}${node.key}: ${valueToString(node.newValue, node.depth)}`;
+        }
+        return `${stringPrefix.repeat(node.depth*2-1)}- ${node.key}: ${valueToString(node.oldValue, node.depth)}\r\n${stringPrefix.repeat(node.depth*2-1)}+ ${node.key}: ${valueToString(node.newValue, node.depth)}`;
       default:
         return '';
     }
