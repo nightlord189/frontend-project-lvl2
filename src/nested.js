@@ -45,11 +45,19 @@ const getAllKeys = (data1, data2) => {
             depth: item.depth
         }       
     }
+    if (_.isObject(data1[item.key]) && _.isObject(data2[item.key])) {
+        return {
+            key: item.key,
+            status: 'change',
+            newValue: compare(data1[item.key], data2[item.key], item.depth),
+            depth: item.depth
+        }       
+    }
     return {
         key: item.key,
         status: 'change',
-        oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data1[item.key], item.depth)[0] : data1[item.key],
-        newValue: _.isObject(data2[item.key]) ? compare(data2[item.key], data2[item.key], item.depth)[0] : data2[item.key],
+        oldValue: _.isObject(data1[item.key]) ? compare(data1[item.key], data1[item.key], item.depth) : data1[item.key],
+        newValue: _.isObject(data2[item.key]) ? compare(data2[item.key], data2[item.key], item.depth) : data2[item.key],
         depth: item.depth
     }
 };
