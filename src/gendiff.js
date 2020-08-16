@@ -1,5 +1,5 @@
-import compareFlat from './flat.js';
+import compareNested from './nested.js';
 
-const genDiff = (file1, file2) => compareFlat(file1, file2);
+const genDiff = (file1, file2, format) => compareNested(file1, file2, format);
 
 export default genDiff;
