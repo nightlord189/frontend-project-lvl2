@@ -31,7 +31,8 @@ const nodeToString = (node) => {
 }
 
 const formatDefault = (nodes, depth=0) => {
-    const dataArrStr = nodes.map(nodeToString);
+    const sorted = nodes.sort((a, b) => (a.key > b.key ? 1 : -1));
+    const dataArrStr = sorted.map(nodeToString);
     const dataStr = dataArrStr.join('\r\n');
     const result = `{\r\n${dataStr}\r\n${stringPrefix.repeat(depth*2)}}`;
     return result;
