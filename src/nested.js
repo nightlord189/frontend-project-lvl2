@@ -20,7 +20,6 @@ const getAllKeys = (data1, data2) => {
   };
   
   const compareMapKey = (item, data1, data2) => {
-    console.log('\n');
     if (!_.has(data2, item.key)) {
         return {
             key: item.key,
