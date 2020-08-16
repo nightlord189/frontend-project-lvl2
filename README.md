@@ -11,3 +11,6 @@
 
 ## ini flat comparison:
 [![asciicast](https://asciinema.org/a/oeA4DWD1R6LHFLGmIi76uWlTc.svg)](https://asciinema.org/a/oeA4DWD1R6LHFLGmIi76uWlTc)
+
+## JSON nested comparison:
+[![asciicast](https://asciinema.org/a/mDeUcOm5SheapFgqDdxdrTxN3.svg)](https://asciinema.org/a/mDeUcOm5SheapFgqDdxdrTxN3)
