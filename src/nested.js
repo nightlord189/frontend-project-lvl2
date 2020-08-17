@@ -14,7 +14,7 @@ import getAllKeys from './utils.js';
 }
 */
 
-const compare = (data1, data2) => {
+const buildAST = (data1, data2) => {
   const keys = getAllKeys(data1, data2);
   const resultObj = keys.map((key) => {
     if (!_.has(data2, key)) {
@@ -35,7 +35,7 @@ const compare = (data1, data2) => {
       return {
         key,
         status: 'nested',
-        children: compare(data1[key], data2[key]),
+        children: buildAST(data1[key], data2[key]),
       };
     }
     if (_.isEqual(data1[key], data2[key])) {
@@ -55,15 +55,15 @@ const compare = (data1, data2) => {
   return resultObj;
 };
 
-const compareNested = (file1, file2, format) => {
+const compareNested = (file1, file2, format='stylish') => {
   const file1Data = fs.readFileSync(file1, { encoding: 'utf8', flag: 'r' });
   const file2Data = fs.readFileSync(file2, { encoding: 'utf8', flag: 'r' });
   const data1 = parse(file1Data, file1.split('.')[1]);
   const data2 = parse(file2Data, file2.split('.')[1]);
-  const result = compare(data1, data2);
+  const ast = buildAST(data1, data2);
   switch (format) {
     case 'stylish':
-      return formatStylish(result);
+      return formatStylish(ast);
     default:
       throw new Error(`unknown format ${format}`);
   }
