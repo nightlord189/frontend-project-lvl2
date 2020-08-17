@@ -2,22 +2,17 @@ import fs from 'fs';
 import _ from 'lodash';
 import parse from './parsers.js';
 import formatStylish from './formatters/stylish.js';
+import getAllKeys from './utils.js';
 
 /*
 {
     key
-    status - add, remove, same, change
-    oldValue
-    newValue (if add or change)
-    depth
+    status - add, remove, same, change, nested
+    value
+    valueNew(if change)
+    children
 }
 */
-
-const getAllKeys = (data1, data2) => {
-  const merged = { ...(_.isObject(data1) ? data1 : {}), ...(_.isObject(data2) ? data2 : {}) };
-  const result = Object.keys(merged);
-  return result;
-};
 
 const compareMapKey = (item, data1, data2) => {
   if (!_.has(data2, item.key)) {
@@ -61,12 +56,45 @@ const compareMapKey = (item, data1, data2) => {
   };
 };
 
-const compare = (data1, data2, depth = 0) => {
+const compare = (data1, data2) => {
   const keys = getAllKeys(data1, data2);
-  const objectWithKeyArr = keys.map((key) => ({ key, depth: depth + 1 }));
-  const resultObj = objectWithKeyArr.map((item) => compareMapKey(item, data1, data2));
-  const resultArr = Object.values(resultObj);
-  return resultArr;
+  const resultObj = keys.map((key)=> {
+    if (!_.has(data2, key)) {
+      return {
+        key,
+        status: 'remove',
+        value: data1[key]
+      };
+    }
+    if (!_.has(data1, key)) {
+      return {
+        key,
+        status: 'add',
+        value: data2[key]
+      };
+    }
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return {
+        key,
+        status: 'nested',
+        children: compare(data1[key], data2[key])
+      };
+    }
+    if (_.isEqual(data1[key], data2[key])) {
+      return {
+        key,
+        status: 'same',
+        value: data1[key]
+      };
+    } 
+    return {
+      key,
+      status: 'change',
+      value: data1[key],
+      valueNew: data2[key]
+    };               
+  });
+  return resultObj;
 };
 
 const compareNested = (file1, file2, format) => {
