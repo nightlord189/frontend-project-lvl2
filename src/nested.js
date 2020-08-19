@@ -2,6 +2,7 @@ import fs from 'fs';
 import _ from 'lodash';
 import parse from './parsers.js';
 import formatStylish from './formatters/stylish.js';
+import formatPlain from './formatters/plain.js';
 import getAllKeys from './utils.js';
 
 /*
@@ -64,6 +65,8 @@ const compareNested = (file1, file2, format = 'stylish') => {
   switch (format) {
     case 'stylish':
       return formatStylish(ast);
+    case 'plain':
+      return formatPlain(ast);
     default:
       throw new Error(`unknown format ${format}`);
   }
