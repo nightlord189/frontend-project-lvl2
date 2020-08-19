@@ -24,7 +24,7 @@ const format = (nodes, depth = 1) => {
             case 'add':
               return `${indent.repeat(depth * 2 - 1)}+ ${node.key}: ${valueToString(node.value, depth)}`;
             case 'change':
-              return `${indent.repeat(depth * 2 - 1)}- ${node.key}: ${valueToString(node.value, node.depth)}\r\n${indent.repeat(depth * 2 - 1)}+ ${node.key}: ${valueToString(node.valueNew, depth)}`;
+              return `${indent.repeat(depth * 2 - 1)}- ${node.key}: ${valueToString(node.value, depth)}\r\n${indent.repeat(depth * 2 - 1)}+ ${node.key}: ${valueToString(node.valueNew, depth)}`;
             case 'nested':
               return `${indent.repeat(depth * 2)}${node.key}: ${format (node.children, depth + 1)}`;
             default:
