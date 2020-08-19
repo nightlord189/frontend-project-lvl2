@@ -9,7 +9,8 @@ const valueToString = (value, depth) => {
     const keysStr = Object.keys(value).map((key)=>{
         return `${indent.repeat(depth * 3)}${key}: ${valueToString(value[key], depth+1)}`;
     });
-    return `{\r\n${keysStr.join('\r\n')}\r\n${indent.repeat(depth * 2 - 1)}}`;
+    const result= `{\r\n${keysStr.join('\r\n')}\r\n${indent.repeat(depth * 2)}}`;
+    return result;
 }
 
 const format = (nodes, depth = 1) => {
