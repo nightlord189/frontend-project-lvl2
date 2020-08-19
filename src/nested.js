@@ -55,7 +55,7 @@ const buildAST = (data1, data2) => {
   return resultObj;
 };
 
-const compareNested = (file1, file2, format='stylish') => {
+const compareNested = (file1, file2, format = 'stylish') => {
   const file1Data = fs.readFileSync(file1, { encoding: 'utf8', flag: 'r' });
   const file2Data = fs.readFileSync(file2, { encoding: 'utf8', flag: 'r' });
   const data1 = parse(file1Data, file1.split('.')[1]);
