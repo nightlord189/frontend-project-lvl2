@@ -21,3 +21,9 @@ test('nested_json', () => {
   const result = fs.readFileSync(`${fixturePath}/result3.txt`, { encoding: 'utf8', flag: 'r' });
   expect(compare).toEqual(result);
 });
+
+test('plain_formatter', () => {
+  const compare = compareNested(`${fixturePath}/file1.json`, `${fixturePath}/file2.json`, 'plain');
+  const result = fs.readFileSync(`${fixturePath}/result_plain_format.txt`, { encoding: 'utf8', flag: 'r' });
+  expect(compare).toEqual(result);
+});
