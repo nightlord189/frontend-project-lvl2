@@ -14,3 +14,6 @@
 
 ## JSON nested comparison:
 [![asciicast](https://asciinema.org/a/mDeUcOm5SheapFgqDdxdrTxN3.svg)](https://asciinema.org/a/mDeUcOm5SheapFgqDdxdrTxN3)
+
+## Plain format:
+[![asciicast](https://asciinema.org/a/2YFWw3RR8JtrBs8vrbyCRg6kn.svg)](https://asciinema.org/a/2YFWw3RR8JtrBs8vrbyCRg6kn)
