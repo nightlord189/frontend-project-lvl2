@@ -29,7 +29,7 @@ const format = (nodes, parent = '') => {
         return '';
     }
   });
-  const result = dataArrStr.filter((x) => x != '').join('\r\n');
+  const result = dataArrStr.filter((x) => x !== '').join('\r\n');
   return result;
 };
 
