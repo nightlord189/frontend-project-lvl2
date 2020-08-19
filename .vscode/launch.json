@@ -12,7 +12,7 @@
             ],
             "type": "node",
             "program": "${workspaceFolder}\\bin\\gendiff.js",
-            "args": ["file3.json", "file4.json"]
+            "args": ["file5.json", "file6.json"]
         },
         {
             "name": "flat json",
