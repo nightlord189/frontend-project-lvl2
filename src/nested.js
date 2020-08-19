@@ -1,7 +1,7 @@
 import fs from 'fs';
 import _ from 'lodash';
 import parse from './parsers.js';
-import formatStylish from './formatters/stylish.js';
+import format from './formatters/index.js';
 import getAllKeys from './utils.js';
 
 /*
@@ -55,18 +55,13 @@ const buildAST = (data1, data2) => {
   return resultObj;
 };
 
-const compareNested = (file1, file2, format = 'stylish') => {
+const compareNested = (file1, file2, formatType = 'stylish') => {
   const file1Data = fs.readFileSync(file1, { encoding: 'utf8', flag: 'r' });
   const file2Data = fs.readFileSync(file2, { encoding: 'utf8', flag: 'r' });
   const data1 = parse(file1Data, file1.split('.')[1]);
   const data2 = parse(file2Data, file2.split('.')[1]);
   const ast = buildAST(data1, data2);
-  switch (format) {
-    case 'stylish':
-      return formatStylish(ast);
-    default:
-      throw new Error(`unknown format ${format}`);
-  }
+  return format(ast, formatType);
 };
 
 export default compareNested;
