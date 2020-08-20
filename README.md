@@ -15,5 +15,8 @@
 ## JSON nested comparison:
 [![asciicast](https://asciinema.org/a/mDeUcOm5SheapFgqDdxdrTxN3.svg)](https://asciinema.org/a/mDeUcOm5SheapFgqDdxdrTxN3)
 
-## Plain format:
+## Plain output format:
 [![asciicast](https://asciinema.org/a/2YFWw3RR8JtrBs8vrbyCRg6kn.svg)](https://asciinema.org/a/2YFWw3RR8JtrBs8vrbyCRg6kn)
+
+## JSON output format:
+[![asciicast](https://asciinema.org/a/FPoY5ibmaJa7aCVH7IghWqv8S.svg)](https://asciinema.org/a/FPoY5ibmaJa7aCVH7IghWqv8S)
