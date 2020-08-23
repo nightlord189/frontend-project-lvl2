@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import commanderPkg from 'commander';
+import commander from 'commander';
 import genDiff from '../src/gendiff.js';
 
-const { Command } = commanderPkg;
+const { Command } = commander;
 
 const program = new Command();
 program
@@ -18,5 +18,3 @@ program.version('1.0.0')
   });
 
 program.parse(process.argv);
-
-console.log('Compares two configuration files and shows a difference.');
