@@ -2,10 +2,9 @@
 import commanderPkg from 'commander';
 import genDiff from '../src/gendiff.js';
 
-const { Command } = commanderPkg;
+const { Commander } = commanderPkg;
 
-const program = new Command();
-program.version('0.0.1');
+const program = new Commander();
 program
   .description('Compares two configuration files and shows a difference.')
   .usage('[options] <filepath1> <filepath2>')
