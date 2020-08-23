@@ -11,9 +11,9 @@ test('flat_yaml', () => {
   expect(compare).toEqual(result);
 });
 
-test('flat_ini', () => {
+test('nested_ini', () => {
   const compare = genDiff(`${getFixturePath('file1.ini')}`, `${getFixturePath('file2.ini')}`);
-  const result = fs.readFileSync(`${getFixturePath('result_flat.txt')}`, { encoding: 'utf8', flag: 'r' });
+  const result = fs.readFileSync(`${getFixturePath('result_nested.txt')}`, { encoding: 'utf8', flag: 'r' });
   expect(compare).toEqual(result);
 });
 
