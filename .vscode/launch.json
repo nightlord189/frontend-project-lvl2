@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "ini json",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "program": "${workspaceFolder}\\bin\\gendiff.js",
+            "args": ["__fixtures__/file1.ini", "__fixtures__/file2.ini", "--format", "json"]
+        },
+        {
             "name": "json plain",
             "request": "launch",
             "skipFiles": [
@@ -12,7 +22,7 @@
             ],
             "type": "node",
             "program": "${workspaceFolder}\\bin\\gendiff.js",
-            "args": ["file3.json", "file4.json", "--format", "plain"]
+            "args": ["__fixtures__/file3.json", "__fixtures__/file4.json", "--format", "plain"]
         },
         {
             "name": "nested json",
@@ -22,7 +32,7 @@
             ],
             "type": "node",
             "program": "${workspaceFolder}\\bin\\gendiff.js",
-            "args": ["file5.json", "file6.json"]
+            "args": ["__fixtures__/file5.json", "__fixtures__/file6.json"]
         },
         {
             "type": "node",
@@ -32,7 +42,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\bin\\gendiff.js",
-            "args": ["file1.yml", "file2.yml"]
+            "args": ["__fixtures__/file1.yml", "__fixtures__/file2.yml"]
         },
         {
             "name": "nested ini",
@@ -42,7 +52,7 @@
             ],
             "type": "node",
             "program": "${workspaceFolder}\\bin\\gendiff.js",
-            "args": ["file11.ini", "file22.ini"]
+            "args": ["__fixtures__/file11.ini", "__fixtures__/file22.ini"]
         }
     ]
 }
