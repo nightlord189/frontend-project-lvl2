@@ -4,16 +4,14 @@ import _ from 'lodash';
 
 const fixIniNumbers = (data) => {
   if (_.isObject(data)) {
-    const entries = Object.entries(data).map(([key, value] = entry)=>{
-      return [key, fixIniNumbers(value)];
-    });
+    const entries = Object.entries(data).map((entry) => [entry[0], fixIniNumbers(entry[1])]);
     return Object.fromEntries(entries);
   }
-  if (!isNaN(data) && !_.isBoolean(data)) {
-    return parseInt(data, 10)
+  if (!Number.isNaN(data) && !_.isBoolean(data)) {
+    return parseInt(data, 10);
   }
   return data;
-}
+};
 
 const parse = (rawData, extension) => {
   switch (extension) {
