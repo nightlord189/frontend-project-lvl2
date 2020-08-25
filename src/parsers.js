@@ -1,5 +1,19 @@
 import yaml from 'js-yaml';
 import ini from 'ini';
+import _ from 'lodash';
+
+const fixIniNumbers = (data) => {
+  if (_.isObject(data)) {
+    const entries = Object.entries(data).map(([key, value] = entry)=>{
+      return [key, fixIniNumbers(value)];
+    });
+    return Object.fromEntries(entries);
+  }
+  if (!isNaN(data) && !_.isBoolean(data)) {
+    return parseInt(data, 10)
+  }
+  return data;
+}
 
 const parse = (rawData, extension) => {
   switch (extension) {
@@ -9,7 +23,7 @@ const parse = (rawData, extension) => {
     case 'yaml':
       return yaml.safeLoad(rawData);
     case 'ini':
-      return ini.parse(rawData);
+      return fixIniNumbers(ini.parse(rawData));
     default:
       throw new Error(`unknown extension ${extension}`);
   }

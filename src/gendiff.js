@@ -56,8 +56,8 @@ const buildAST = (data1, data2) => {
 };
 
 const genDiff = (file1, file2, formatType = 'stylish') => {
-  const file1Data = fs.readFileSync(file1, { encoding: 'utf8', flag: 'r' });
-  const file2Data = fs.readFileSync(file2, { encoding: 'utf8', flag: 'r' });
+  const file1Data = fs.readFileSync(file1, 'utf8');
+  const file2Data = fs.readFileSync(file2, 'utf8');
   const data1 = parse(file1Data, file1.split('.')[1]);
   const data2 = parse(file2Data, file2.split('.')[1]);
   const ast = buildAST(data1, data2);
