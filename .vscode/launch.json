@@ -37,7 +37,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "flat yml",
+            "name": "yml stylish",
             "skipFiles": [
                 "<node_internals>/**"
             ],
