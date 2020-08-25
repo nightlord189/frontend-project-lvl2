@@ -16,7 +16,7 @@ import getAllKeys from './utils.js';
 
 const buildAST = (data1, data2) => {
   const keys = getAllKeys(data1, data2);
-  const resultObj = keys.map((key) => {
+  const result = keys.map((key) => {
     if (!_.has(data2, key)) {
       return {
         key,
@@ -52,7 +52,7 @@ const buildAST = (data1, data2) => {
       valueNew: data2[key],
     };
   });
-  return resultObj;
+  return result;
 };
 
 const genDiff = (file1, file2, formatType = 'stylish') => {
