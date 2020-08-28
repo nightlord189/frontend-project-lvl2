@@ -3,25 +3,17 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src/gendiff.js';
 
-const testData = [
-  ['file1.json', 'file2.json', 'stylish', 'result_stylish.txt'],
-  ['file1.json', 'file2.json', 'plain', 'result_plain.txt'],
-  ['file1.json', 'file2.json', 'json', 'result_json.txt'],
-  ['file1.yml', 'file2.yml', 'stylish', 'result_stylish.txt'],
-  ['file1.yml', 'file2.yml', 'plain', 'result_plain.txt'],
-  ['file1.yml', 'file2.yml', 'json', 'result_json.txt'],
-  ['file1.ini', 'file2.ini', 'stylish', 'result_stylish.txt'],
-  ['file1.ini', 'file2.ini', 'json', 'result_json.txt'],
-  ['file1.ini', 'file2.ini', 'plain', 'result_plain.txt'],
-];
+const fileExtensions = ['json', 'yml', 'ini'];
+const formatTypes = ['stylish', 'json', 'plain'];
 
 const getFixturePath = (filename) => path.join('__fixtures__', filename);
 
-test.each(testData)(
-  '%p %p, format %p, result %p',
-  (file1, file2, formatType, resultFile) => {
-    const compare = genDiff(`${getFixturePath(file1)}`, `${getFixturePath(file2)}`, formatType);
-    const result = fs.readFileSync(`${getFixturePath(resultFile)}`, 'utf8');
+const getTestData = (ext, formats) => ext.flatMap(e => formats.map(f => [e, f]));
+
+test.each(getTestData(fileExtensions, formatTypes)) (
+  '%p %p', (ext, format) => {
+    const compare = genDiff(`${getFixturePath(`file1.${ext}`)}`, `${getFixturePath(`file2.${ext}`)}`, format);
+    const result = fs.readFileSync(`${getFixturePath(`result_${format}.txt`)}`, 'utf8');
     expect(compare).toEqual(result);
-  },
+  }
 );
