@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path'
+import path from 'path';
 import parse from './parsers.js';
 import buildAST from './ast.js';
 import format from './formatters/index.js';
