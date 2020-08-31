@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const valToString = (value) => {
   if (!_.isObject(value)) {
-    if (_.isBoolean(value)) {
+    if (_.isBoolean(value) || _.isNumber(value)) {
       return value.toString();
     }
     return `'${value}'`;
