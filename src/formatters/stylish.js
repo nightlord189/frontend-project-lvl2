@@ -25,7 +25,7 @@ const format = (nodes, depth = 1) => {
       case 'nested':
         return `${indent.repeat(depth * 2)}${node.key}: ${format(node.children, depth + 1)}`;
       default:
-        return '';
+        return null;
     }
   });
   const dataStr = stringified.join('\r\n');

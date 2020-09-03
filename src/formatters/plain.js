@@ -10,10 +10,10 @@ const valToString = (value) => {
   return '[complex value]';
 };
 
-const getPropertyName = (property, parent) => (parent !== '' ? `${parent}.${property}` : property);
+const getPropertyName = (property, parent) => (parent !== null ? `${parent}.${property}` : property);
 
-const format = (nodes, parent = '') => {
-  const sorted = nodes.sort((a, b) => (a.key > b.key ? 1 : -1));
+const format = (nodes, parent = null) => {
+  const sorted = [...nodes].sort((a, b) => (a.key > b.key ? 1 : -1));
   const stringified = sorted.map((node) => {
     const property = getPropertyName(node.key, parent);
     switch (node.status) {
@@ -26,10 +26,10 @@ const format = (nodes, parent = '') => {
       case 'nested':
         return format(node.children, property);
       default:
-        return '';
+        return null;
     }
   });
-  const result = stringified.filter((x) => x !== '').join('\r\n');
+  const result = stringified.filter((x) => x !== null).join('\r\n');
   return result;
 };
 
