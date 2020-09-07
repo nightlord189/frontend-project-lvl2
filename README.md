@@ -21,14 +21,14 @@ npm link
 gendiff <file1.json> <file2.json>
 ```
 
-#### Available formats:
+### Available files:
 ```
 json
 yaml
 ini
 ```
 
-#### Available formats:
+### Available formats:
 change format by --format option. Available formats:
 ```
 stylish
