@@ -2,9 +2,7 @@ import _ from 'lodash';
 
 const indent = '  ';
 
-const getIndent = (count) => {
-  return indent.repeat(count);
-}
+const getIndent = (count) => indent.repeat(count);
 
 const valToString = (value, depth) => {
   if (_.isUndefined(value)) {
@@ -31,7 +29,7 @@ const format = (nodes, depth = 1) => {
         return `${getIndent(depth * 2 - 1)}+ ${node.key}: ${value}`;
       case 'change':
         return `${getIndent(depth * 2 - 1)}- ${node.key}: ${value}`
-           +`\r\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
+           + `\r\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
       case 'nested':
         return `${getIndent(depth * 2)}${node.key}: ${format(node.children, depth + 1)}`;
       default:
