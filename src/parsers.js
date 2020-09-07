@@ -7,7 +7,7 @@ const fixIniNumbers = (data) => {
     const entries = Object.entries(data).map((entry) => [entry[0], fixIniNumbers(entry[1])]);
     return Object.fromEntries(entries);
   }
-  if (Number.isInteger(parseInt(data, 10)) && /^\d+$/.test(data)) {
+  if (!Number.isNaN(+data) && !_.isBoolean(data)) {
     return parseInt(data, 10);
   }
   return data;
