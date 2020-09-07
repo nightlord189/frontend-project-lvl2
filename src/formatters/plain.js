@@ -29,7 +29,7 @@ const format = (nodes, parent = null) => {
         return null;
     }
   });
-  const result = stringified.filter((x) => x !== null).join('\r\n');
+  const result = stringified.filter((x) => !_.isNull(x)).join('\r\n');
   return result;
 };
 
