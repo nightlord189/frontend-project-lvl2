@@ -5,11 +5,8 @@ const indent = '  ';
 const getIndent = (count) => indent.repeat(count);
 
 const valToString = (value, depth) => {
-  if (_.isUndefined(value)) {
-    return null;
-  }
   if (!_.isObject(value)) {
-    return value.toString();
+    return value;
   }
   const keysStr = Object.keys(value).map((key) => `${getIndent((depth + 1) * 2)}${key}: ${valToString(value[key], depth + 1)}`);
   return `{\r\n${keysStr.join('\r\n')}\r\n${getIndent(depth * 2)}}`;

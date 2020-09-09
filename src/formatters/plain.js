@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const valToString = (value) => {
   if (!_.isObject(value)) {
-    return _.isString(value) ? `'${value}'` : value.toString();
+    return _.isString(value) ? `'${value}'` : value;
   }
   return '[complex value]';
 };
