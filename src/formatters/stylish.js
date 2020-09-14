@@ -25,8 +25,7 @@ const format = (nodes, depth = 1) => {
       case 'added':
         return `${getIndent(depth * 2 - 1)}+ ${node.key}: ${value}`;
       case 'changed':
-        return `${getIndent(depth * 2 - 1)}- ${node.key}: ${value}`
-           + `\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
+        return `${getIndent(depth * 2 - 1)}- ${node.key}: ${value}\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
       case 'nested':
         return `${getIndent(depth * 2)}${node.key}: ${format(node.children, depth + 1)}`;
       default:

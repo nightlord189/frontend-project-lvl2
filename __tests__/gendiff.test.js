@@ -1,7 +1,7 @@
 import { test, expect, describe } from '@jest/globals';
 import fs from 'fs';
 import path from 'path';
-import genDiff from '../src/gendiff.js';
+import genDiff from '../src/index.js';
 
 const fileExtensions = ['json', 'yml', 'ini'];
 const formatTypes = ['stylish', 'json', 'plain'];
