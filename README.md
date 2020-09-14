@@ -5,7 +5,7 @@
 
 
 ## Description
-This is training JS-project, app that compares two config files and shows difference
+This is training JS-project on [Hexlet](https://hexlet.io), app that compares two config files and shows difference
 
 
 ## Getting Started
