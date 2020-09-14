@@ -2,10 +2,7 @@ import _ from 'lodash';
 
 const valToString = (value) => {
   if (!_.isObject(value)) {
-    if (_.isBoolean(value) || _.isNumber(value)) {
-      return value.toString();
-    }
-    return `'${value}'`;
+    return _.isString(value) ? `'${value}'` : value;
   }
   return '[complex value]';
 };
@@ -29,7 +26,7 @@ const format = (nodes, parent = null) => {
         return null;
     }
   });
-  const result = stringified.filter((x) => x !== null).join('\r\n');
+  const result = stringified.filter((x) => !_.isNull(x)).join('\r\n');
   return result;
 };
 
