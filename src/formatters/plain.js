@@ -11,7 +11,7 @@ const getPropertyName = (property, parent) => (parent !== null ? `${parent}.${pr
 
 const format = (nodes, parent = null) => {
   const sorted = [...nodes].sort((a, b) => (a.key > b.key ? 1 : -1));
-  const stringified = sorted.filter(x=>x.status != 'same').map((node) => {
+  const stringified = sorted.filter((x) => x.status !== 'same').map((node) => {
     const property = getPropertyName(node.key, parent);
     switch (node.status) {
       case 'removed':
@@ -22,6 +22,8 @@ const format = (nodes, parent = null) => {
         return `Property '${property}' was updated. From ${stringifyValue(node.value)} to ${stringifyValue(node.valueNew)}`;
       case 'nested':
         return format(node.children, property);
+      default:
+        throw new Error(`unknown node status ${node.status}`);
     }
   });
   const result = stringified.filter((x) => !_.isNull(x)).join('\n');
