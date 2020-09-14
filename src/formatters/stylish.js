@@ -20,11 +20,11 @@ const format = (nodes, depth = 1) => {
     switch (node.status) {
       case 'same':
         return `${getIndent(depth * 2)}${node.key}: ${value}`;
-      case 'remove':
+      case 'removed':
         return `${getIndent(depth * 2 - 1)}- ${node.key}: ${value}`;
-      case 'add':
+      case 'added':
         return `${getIndent(depth * 2 - 1)}+ ${node.key}: ${value}`;
-      case 'change':
+      case 'changed':
         return `${getIndent(depth * 2 - 1)}- ${node.key}: ${value}`
            + `\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
       case 'nested':

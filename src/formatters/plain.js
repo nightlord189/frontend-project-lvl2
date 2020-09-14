@@ -14,11 +14,11 @@ const format = (nodes, parent = null) => {
   const stringified = sorted.map((node) => {
     const property = getPropertyName(node.key, parent);
     switch (node.status) {
-      case 'remove':
+      case 'removed':
         return `Property '${property}' was removed`;
-      case 'add':
+      case 'added':
         return `Property '${property}' was added with value: ${valToString(node.value)}`;
-      case 'change':
+      case 'changed':
         return `Property '${property}' was updated. From ${valToString(node.value)} to ${valToString(node.valueNew)}`;
       case 'nested':
         return format(node.children, property);

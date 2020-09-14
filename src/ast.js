@@ -17,14 +17,14 @@ const buildAST = (data1, data2) => {
     if (!_.has(data2, key)) {
       return {
         key,
-        status: 'remove',
+        status: 'removed',
         value: data1[key],
       };
     }
     if (!_.has(data1, key)) {
       return {
         key,
-        status: 'add',
+        status: 'added',
         value: data2[key],
       };
     }
@@ -44,7 +44,7 @@ const buildAST = (data1, data2) => {
     }
     return {
       key,
-      status: 'change',
+      status: 'changed',
       value: data1[key],
       valueNew: data2[key],
     };
