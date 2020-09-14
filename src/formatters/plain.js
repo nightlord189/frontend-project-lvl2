@@ -10,8 +10,7 @@ const stringifyValue = (value) => {
 const getPropertyName = (property, parent) => (parent !== null ? `${parent}.${property}` : property);
 
 const format = (nodes, parent = null) => {
-  const sorted = [...nodes].sort((a, b) => (a.key > b.key ? 1 : -1));
-  const stringified = sorted.filter((x) => x.status !== 'same').map((node) => {
+  const stringified = nodes.filter((x) => x.status !== 'same').map((node) => {
     const property = getPropertyName(node.key, parent);
     switch (node.status) {
       case 'removed':
