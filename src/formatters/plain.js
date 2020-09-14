@@ -26,7 +26,7 @@ const format = (nodes, parent = null) => {
         return null;
     }
   });
-  const result = stringified.filter((x) => !_.isNull(x)).join('\r\n');
+  const result = stringified.filter((x) => !_.isNull(x)).join('\n');
   return result;
 };
 

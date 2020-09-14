@@ -9,7 +9,7 @@ const valToString = (value, depth) => {
     return value;
   }
   const keysStr = Object.keys(value).map((key) => `${getIndent((depth + 1) * 2)}${key}: ${valToString(value[key], depth + 1)}`);
-  return `{\r\n${keysStr.join('\r\n')}\r\n${getIndent(depth * 2)}}`;
+  return `{\n${keysStr.join('\n')}\n${getIndent(depth * 2)}}`;
 };
 
 const format = (nodes, depth = 1) => {
@@ -26,14 +26,14 @@ const format = (nodes, depth = 1) => {
         return `${getIndent(depth * 2 - 1)}+ ${node.key}: ${value}`;
       case 'change':
         return `${getIndent(depth * 2 - 1)}- ${node.key}: ${value}`
-           + `\r\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
+           + `\n${getIndent(depth * 2 - 1)}+ ${node.key}: ${valueNew}`;
       case 'nested':
         return `${getIndent(depth * 2)}${node.key}: ${format(node.children, depth + 1)}`;
       default:
         return null;
     }
-  }).join('\r\n');
-  const result = `{\r\n${stringified}\r\n${getIndent(depth * 2 - 2)}}`;
+  }).join('\n');
+  const result = `{\n${stringified}\n${getIndent(depth * 2 - 2)}}`;
   return result;
 };
 
